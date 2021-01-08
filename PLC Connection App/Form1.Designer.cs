@@ -32,6 +32,7 @@
             this.lbInfor = new System.Windows.Forms.Label();
             this.lbConnectionStatus = new System.Windows.Forms.Label();
             this.btnReConnect = new System.Windows.Forms.Button();
+            this.ucTest1 = new PLC_Connection_App.ucTest();
             this.SuspendLayout();
             // 
             // button1
@@ -73,11 +74,19 @@
             this.btnReConnect.UseVisualStyleBackColor = true;
             this.btnReConnect.Click += new System.EventHandler(this.btnReConnect_Click);
             // 
+            // ucTest1
+            // 
+            this.ucTest1.Location = new System.Drawing.Point(299, 12);
+            this.ucTest1.Name = "ucTest1";
+            this.ucTest1.Size = new System.Drawing.Size(150, 150);
+            this.ucTest1.TabIndex = 4;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ucTest1);
             this.Controls.Add(this.btnReConnect);
             this.Controls.Add(this.lbConnectionStatus);
             this.Controls.Add(this.lbInfor);
@@ -97,6 +106,7 @@
         private System.Windows.Forms.Label lbInfor;
         public System.Windows.Forms.Label lbConnectionStatus;
         private System.Windows.Forms.Button btnReConnect;
+        private ucTest ucTest1;
     }
 }
 

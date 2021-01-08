@@ -29,7 +29,7 @@ namespace PLC_Connection_App.Modules
         {
             try
             {
-                if (plc.Connected)
+                if (Form1.CheckConnectionPLC(plc))
                 {
                     if (Read())
                     {
@@ -49,17 +49,24 @@ namespace PLC_Connection_App.Modules
                     return "Error";
                 };
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine("Lost connection!");
-                return "";
+                if (Form1.CheckConnectionPLC(plc))
+                {
+                    Console.WriteLine("Lost connection!");
+                    return "Lost connection!";
+                }
+                else
+                {
+                    return "Lost connection!";
+                }
             };
 
         }
         public bool Read()
         {
             bool[] result = plc.ReadCoils(Address, 1);
-            return result[0];            
+            return result[0];
         }
 
     }

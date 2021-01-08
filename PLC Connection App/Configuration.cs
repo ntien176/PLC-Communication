@@ -24,16 +24,16 @@ namespace PLC_Connection_App
             Port = port;
             //Master = new ModbusMaster(Ipmaster, Port);
             //Master.Open();
-
-            Master = new ModbusClient(Ipmaster, Port);
-            Master.Connect();
+            try
+            {
+                Master = new ModbusClient(Ipmaster, Port);
+                Master.Connect();
+            }
+            catch
+            {
+                Form1.ErrorMes("Lost connection!", "Error");
+            }
         }
-        //public static Configuration plcMaster;
-        //public static void ConnectPLC()
-        //{
-        //    plcMaster = new Configuration(Constants.ipMasterSimulate, Constants.portMaster);
-
-        //}
     }
 
 }

@@ -14,7 +14,7 @@ namespace PLC_Connection_App
     public partial class Form1 : Form
     {
         public Configuration PLCClass;
-        ModbusClient plcMaster;
+        public static ModbusClient plcMaster;
         public Form1()
         {
             InitializeComponent();
@@ -23,10 +23,10 @@ namespace PLC_Connection_App
         void Form1_Load(object sender, EventArgs e)
         {
             plcMaster = ConnectPLC(PLCClass);
-            if (plcMaster.Connected)
+            if (CheckConnectionPLC(plcMaster))
             {
                 lbConnectionStatus.Text = "Connect successfully!";
-            }
+            }            
             else
             {
                 lbConnectionStatus.Text = "Connect fail!";
@@ -62,10 +62,26 @@ namespace PLC_Connection_App
             plcClass = new Configuration(Constants.ipMasterSimulate, Constants.portMaster);
             return plcClass.Master;
         }
+        public static bool CheckConnectionPLC(ModbusClient plc)
+        {
+            if (plc.Connected)
+            {
+                return true;
+            }
+            else
+            {
+                ErrorMes("Lost connection!", "Error");
+                return false;
+            }
+        }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             //plcMaster.Master.Close();
             plcMaster.Disconnect();
+        }
+        public static void ErrorMes(string content, string title)
+        {
+            MessageBox.Show(content, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

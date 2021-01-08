@@ -16,8 +16,7 @@ namespace PLC_Connection_App
         public ucTest()
         {
             InitializeComponent();
-            m82Btn = new Modules.ButtonsOfPLC(Configuration.plcMaster, "Set up", 2081, "Turn off the light", "Turn on the light", 1);
-
+            m82Btn = new Modules.ButtonsOfPLC(Form1.plcMaster, "Set up", 2081, "Turn off the light", "Turn on the light", 1);
         }
 
         private void btnM82_Click(object sender, EventArgs e)

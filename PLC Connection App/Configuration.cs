@@ -31,7 +31,7 @@ namespace PLC_Connection_App
             }
             catch
             {
-                Form1.ErrorMes("Lost connection!", "Error");
+                //Form1.ErrorMes("Lost connection!", "Error");
             }
         }
     }

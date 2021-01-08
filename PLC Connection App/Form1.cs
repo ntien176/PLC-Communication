@@ -15,6 +15,7 @@ namespace PLC_Connection_App
     {
         public Configuration PLCClass;
         public static ModbusClient plcMaster;
+        public string connectionStatus;
         public Form1()
         {
             InitializeComponent();
@@ -25,11 +26,11 @@ namespace PLC_Connection_App
             plcMaster = ConnectPLC(PLCClass);
             if (CheckConnectionPLC(plcMaster))
             {
-                lbConnectionStatus.Text = "Connect successfully!";
-            }            
+                lbConnectionStatus.Text = connectionStatus;
+            }
             else
             {
-                lbConnectionStatus.Text = "Connect fail!";
+                lbConnectionStatus.Text = connectionStatus;
             }
             //Declare variables:
             //setupBtn = new Modules.ButtonsOfPLC(plcMaster, "Set up", 2081, "Turn off the light", "Turn on the light", 1);
@@ -38,9 +39,16 @@ namespace PLC_Connection_App
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Modules.ButtonsOfPLC resetBtn;
-            resetBtn = new Modules.ButtonsOfPLC(plcMaster, "Reset", 2080, "Off status", "On status", 1);
-            lbInfor.Text = resetBtn.Write();
+            if (CheckConnectionPLC(plcMaster))
+            {
+                Modules.ButtonsOfPLC resetBtn;
+                resetBtn = new Modules.ButtonsOfPLC(plcMaster, "Reset", 2080, "Off status", "On status", 1);
+                lbInfor.Text = resetBtn.Write();
+            }
+            else
+            {
+                lbConnectionStatus.Text = connectionStatus;
+            }
             //Console.WriteLine("plc Connect: " + plcMaster.Master.IsConnected);
         }
 
@@ -48,13 +56,13 @@ namespace PLC_Connection_App
         {
             //Declare master plc
             plcMaster = ConnectPLC(PLCClass);
-            if (plcMaster.Connected)
+            if (CheckConnectionPLC(plcMaster))
             {
-                lbConnectionStatus.Text = "Connect successfully!";
+                lbConnectionStatus.Text = connectionStatus;
             }
             else
             {
-                lbConnectionStatus.Text = "Connect fail!";
+                lbConnectionStatus.Text = connectionStatus;
             }
         }
         public ModbusClient ConnectPLC(Configuration plcClass)
@@ -62,14 +70,17 @@ namespace PLC_Connection_App
             plcClass = new Configuration(Constants.ipMasterSimulate, Constants.portMaster);
             return plcClass.Master;
         }
-        public static bool CheckConnectionPLC(ModbusClient plc)
+        public bool CheckConnectionPLC(ModbusClient plc)
         {
-            if (plc.Connected)
+            try
             {
+                plc.Connect();
+                connectionStatus = "Connect successfully!";
                 return true;
             }
-            else
+            catch
             {
+                connectionStatus = "Connect fail!";
                 ErrorMes("Lost connection!", "Error");
                 return false;
             }

@@ -95,7 +95,7 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lbInfor;
-        private System.Windows.Forms.Label lbConnectionStatus;
+        public System.Windows.Forms.Label lbConnectionStatus;
         private System.Windows.Forms.Button btnReConnect;
     }
 }

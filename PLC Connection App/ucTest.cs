@@ -12,16 +12,18 @@ namespace PLC_Connection_App
 {
     public partial class ucTest : UserControl
     {
-        private Modules.ButtonsOfPLC m82Btn;
         public ucTest()
         {
             InitializeComponent();
-            m82Btn = new Modules.ButtonsOfPLC(Form1.plcMaster, "Set up", 2081, "Turn off the light", "Turn on the light", 1);
         }
-
         private void btnM82_Click(object sender, EventArgs e)
         {
-            lbM82.Text = m82Btn.Write();
+            Modules.ButtonsOfPLC m82Btn;
+            if (Form1.CheckConnectionPLC(Form1.plcMaster))
+            {
+                m82Btn = new Modules.ButtonsOfPLC(Form1.plcMaster, "Set up", 2081, "Turn off the light", "Turn on the light", 1);
+                lbM82.Text = m82Btn.Write();
+            }
         }
     }
 }

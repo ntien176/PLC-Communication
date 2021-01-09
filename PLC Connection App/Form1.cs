@@ -15,7 +15,7 @@ namespace PLC_Connection_App
     {
         public Configuration PLCClass;
         public static ModbusClient plcMaster;
-        public string connectionStatus;
+        public static string connectionStatus;
         public Form1()
         {
             InitializeComponent();
@@ -56,21 +56,15 @@ namespace PLC_Connection_App
         {
             //Declare master plc
             plcMaster = ConnectPLC(PLCClass);
-            if (CheckConnectionPLC(plcMaster))
-            {
-                lbConnectionStatus.Text = connectionStatus;
-            }
-            else
-            {
-                lbConnectionStatus.Text = connectionStatus;
-            }
+            CheckConnectionPLC(plcMaster);
+            lbConnectionStatus.Text = connectionStatus;
         }
         public ModbusClient ConnectPLC(Configuration plcClass)
         {
             plcClass = new Configuration(Constants.ipMasterSimulate, Constants.portMaster);
             return plcClass.Master;
         }
-        public bool CheckConnectionPLC(ModbusClient plc)
+        public static bool CheckConnectionPLC(ModbusClient plc)
         {
             try
             {

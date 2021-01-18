@@ -80,6 +80,7 @@
             this.ucTest1.Name = "ucTest1";
             this.ucTest1.Size = new System.Drawing.Size(150, 150);
             this.ucTest1.TabIndex = 4;
+            this.ucTest1.Load += new System.EventHandler(this.ucTest1_Load);
             // 
             // Form1
             // 

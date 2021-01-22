@@ -29,17 +29,16 @@ namespace PLC_Connection_App.Modules
         {
             try
             {
-
                     if (Read())
                     {
                         plc.WriteSingleCoil(Address, false);
-                        Console.WriteLine(address + " is " + Read().ToString());
+                        //Console.WriteLine(address + " is " + Read().ToString());
                         return descriptionOfStatusOff;
                     }
                     else
                     {
                         plc.WriteSingleCoil(Address, true);
-                        Console.WriteLine(address + " is " + Read().ToString());
+                        //Console.WriteLine(address + " is " + Read().ToString());
                         return descriptionOfStatusOn;
                     }
             }

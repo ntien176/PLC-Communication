@@ -33,6 +33,7 @@
             this.lbConnectionStatus = new System.Windows.Forms.Label();
             this.btnReConnect = new System.Windows.Forms.Button();
             this.ucTest1 = new PLC_Connection_App.ucTest();
+            this.lbConnectStt = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -60,9 +61,8 @@
             this.lbConnectionStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbConnectionStatus.Location = new System.Drawing.Point(12, 428);
             this.lbConnectionStatus.Name = "lbConnectionStatus";
-            this.lbConnectionStatus.Size = new System.Drawing.Size(41, 15);
+            this.lbConnectionStatus.Size = new System.Drawing.Size(0, 15);
             this.lbConnectionStatus.TabIndex = 2;
-            this.lbConnectionStatus.Text = "label1";
             // 
             // btnReConnect
             // 
@@ -82,11 +82,21 @@
             this.ucTest1.TabIndex = 4;
             this.ucTest1.Load += new System.EventHandler(this.ucTest1_Load);
             // 
+            // lbConnectStt
+            // 
+            this.lbConnectStt.AutoSize = true;
+            this.lbConnectStt.Location = new System.Drawing.Point(95, 242);
+            this.lbConnectStt.Name = "lbConnectStt";
+            this.lbConnectStt.Size = new System.Drawing.Size(35, 13);
+            this.lbConnectStt.TabIndex = 5;
+            this.lbConnectStt.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lbConnectStt);
             this.Controls.Add(this.ucTest1);
             this.Controls.Add(this.btnReConnect);
             this.Controls.Add(this.lbConnectionStatus);
@@ -108,6 +118,7 @@
         public System.Windows.Forms.Label lbConnectionStatus;
         private System.Windows.Forms.Button btnReConnect;
         private ucTest ucTest1;
+        public System.Windows.Forms.Label lbConnectStt;
     }
 }
 

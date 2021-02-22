@@ -14,6 +14,7 @@ namespace PLC_Connection_App
 
         public const string ipMasterWe3 = "192.168.0.5";
         public const string ipMasterWe6Saw = "192.168.10.35";
+        public const string ipMasterWe7 = "192.168.1.50";
 
         public const int portMaster = 502;
 
